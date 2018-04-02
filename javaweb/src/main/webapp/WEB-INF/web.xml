@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+  <display-name>ssm</display-name>
+
+  <filter>
+    <filter-name>CharFilter</filter-name>
+    <filter-class>com.chinamobile.filter.CharFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+
+  <servlet>
+    <servlet-name>ResourceServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.ResourceServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>NewUserServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.NewUserServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>QueryBalanceServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.QueryBalanceServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>RandomCodeServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.RandomCodeServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>LogServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.LogServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>ChargeServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.ChargeServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>FunctionServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.FunctionServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>XCustomerServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.XCustomerServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>OperatorServlet</servlet-name>
+    <servlet-class>com.chinamobile.servlet.OperatorServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OperatorServlet</servlet-name>
+    <url-pattern>/OperatorServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>XCustomerServlet</servlet-name>
+    <url-pattern>/XCustomerServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>FunctionServlet</servlet-name>
+    <url-pattern>/FunctionServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>ChargeServlet</servlet-name>
+    <url-pattern>/ChargeServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>LogServlet</servlet-name>
+    <url-pattern>/LogServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RandomCodeServlet</servlet-name>
+    <url-pattern>/RandomCodeServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>QueryBalanceServlet</servlet-name>
+    <url-pattern>/QueryBalanceServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>NewUserServlet</servlet-name>
+    <url-pattern>/NewUserServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>ResourceServlet</servlet-name>
+    <url-pattern>/ResourceServlet</url-pattern>
+  </servlet-mapping>
+
+  <filter-mapping>
+    <filter-name>CharFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- mybatis 配置文件-->
+<configuration>
+    <!-- 读取资源文件-->
+    <properties resource="jdbc.properties"/>
+
+    <!-- 设置别名 -->
+    <typeAliases>
+        <!-- 给每个包下的类指定别名（不推荐）-->
+        <!-- <typeAlias type> -->
+        <!-- 指定包下的类名即别名-->
+        <package name="com.chinamobile.pojo"/>
+    </typeAliases>
+
+    <!-- 开发环境的配置 -->
+    <environments default="development">
+        <!-- 一个开发环境对应一个数据库-->
+        <environment id="development">
+            <!-- 事物管理器-->
+            <transactionManager type="JDBC"/>
+            <!--数据库连接池-->
+            <dataSource type="POOLED">
+                <!-- 连接数据库的参数-->
+                <property name="driver" value="${driver}"></property>
+                <property name="url" value="${url}"></property>
+                <property name="username" value="${username}"></property>
+                <property name="password" value="${password}"></property>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+
+    <!-- 映射文件-->
+    <mappers>
+        <mapper resource="com/chinamobile/dao/XMobilesMapper.xml"/>
+        <mapper resource="com/chinamobile/dao/XUserMapper.xml"/>
+        <mapper resource="com/chinamobile/dao/XOperatorMapper.xml"/>
+        <mapper resource="com/chinamobile/dao/XChargeMapper.xml"/>
+        <mapper resource="com/chinamobile/dao/XFunctionMapper.xml"/>
+        <mapper resource="com/chinamobile/dao/XCustomerMapper.xml"/>
+    </mappers>
+
+</configuration>

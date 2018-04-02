@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinamobile.dao.XOperatorMapper">
+
+    <resultMap type="XOperator" id="result-xo">
+        <id column="op_Id" property="opId"/>
+        <result column="op_Name" property="opName"/>
+        <result column="op_Pwd" property="opPwd"/>
+        <result column="op_Mark" property="opMark"/>
+    </resultMap>
+
+
+
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinamobile.dao.XCustomerMapper">
+
+
+    <resultMap id="result-XCus" type="XCustomer">
+        <id property="cusId" column="cus_id"/>
+        <result property="cusType" column="CUS_TYPE"/>
+        <result property="cusNumber" column="CUS_NUMber"/>
+        <result property="cusName" column="CUS_NAME"/>
+        <result property="cusBirth" column="CUS_BIRTH"/>
+        <result property="cusSex" column="CUS_SEX"/>
+        <result property="cusAdd" column="CUS_ADD"/>
+    </resultMap>
+
+
+
+</mapper>

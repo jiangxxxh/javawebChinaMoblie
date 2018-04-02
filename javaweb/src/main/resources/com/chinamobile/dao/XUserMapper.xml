@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinamobile.dao.XUserMapper">
+
+    <resultMap id="result-XUser" type="XUser">
+        <id property="userId" column="user_id"/>
+        <result property="userStatus" column="user_status"/>
+        <result property="userLevel" column="user_level"/>
+        <result property="userBalance" column="user_balance"/>
+        <result property="mobilesNum" column="mobiles_num"/>
+        <result property="cusId" column="cus_id"/>
+
+        <association property="xcustomer" javaType="XCustomer" column="cus_id">
+            <id property="cusId" column="cus_id"/>
+            <result property="cusType" column="CUS_TYPE"/>
+            <result property="cusNumber" column="CUS_NUMber"/>
+            <result property="cusName" column="CUS_NAME"/>
+            <result property="cusBirth" column="CUS_BIRTH"/>
+            <result property="cusSex" column="CUS_SEX"/>
+            <result property="cusAdd" column="CUS_ADD"/>
+        </association>
+
+        <association property="xmobiles" javaType="XMobiles" column="mobiles_num">
+            <id property="mobilesNum" column="mobiles_num"/>
+            <result property="mobilesType" column="mobiles_type"/>
+            <result property="cardNum" column="card_num"/>
+            <result property="isAvailable" column="is_available"/>
+        </association>
+
+    </resultMap>
+
+    <select id="findByParam" resultMap="result-XUser">
+        SELECT user_id,user_status,user_level,user_balance,u.mobiles_num, x.cus_id,cus_type,cus_number,CUS_NAME,CUS_BIRTH,CUS_SEX,CUS_ADD,m.MOBILES_TYPE
+        FROM XUSER u INNER JOIN  XCUSTOMER X ON u.CUS_ID = X.CUS_ID INNER JOIN XMOBILES m ON u.MOBILES_NUM=m.MOBILES_NUM
+        <where>
+            1=1
+            <if test="mobilesNum != null and mobilesNum != ''">
+                AND u.mobiles_num LIKE concat('%',concat(#{mobilesNum},'%'))
+            </if>
+            <if test="(cusNumber != null and cusNumber != '') and (cusType != null and cusType != '')">
+                AND x.cus_number LIKE concat('%',concat(#{cusNumber},'%')) AND x.CUS_TYPE LIKE concat('%',concat(#{cusType},'%'))
+            </if>
+        </where>
+    </select>
+
+
+
+</mapper>

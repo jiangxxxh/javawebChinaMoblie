@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinamobile.dao.XMobilesMapper">
+
+    <resultMap id="result-XMobiles" type="XMobiles">
+        <id property="mobilesNum" column="mobiles_num"/>
+        <result property="mobilesType" column="mobiles_type"/>
+        <result property="cardNum" column="card_num"/>
+        <result property="isAvailable" column="is_available"/>
+    </resultMap>
+
+    <select id="findByParam" resultMap="result-XMobiles">
+        select mobiles_num,mobiles_type,card_num,is_available from xmobiles
+        <where>
+            is_available='1'
+            <if test="mobilesType != null and mobilesType != ''">
+                and mobiles_type=#{mobilesType}
+            </if>
+        </where>
+    </select>
+
+
+    <sql id="pagerHeader">
+SELECT xm.* from(SELECT x.*,row_number() OVER(order by mobiles_num asc) rn from XMOBILES x
+    </sql>
+
+    <sql id="whereCase">
+        <where>
+            is_available='1'
+            <if test="mobilesType != null and mobilesType != ''">
+                and mobiles_type=#{mobilesType}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="pagerFoot">
+        <![CDATA[) xm where rn>#{page} and rn<=#{rows}]]>
+    </sql>
+
+    <sql id="orderBy">
+      order by
+        <choose>
+            <when test="sort == 'mobilesNum'">mobiles_num</when>
+            <otherwise>mobiles_num</otherwise>
+        </choose>
+        <if test="order == 'asc'">asc</if>
+        <if test="order == 'desc'">desc</if>
+    </sql>
+
+    <!-- 分页查询总数-->
+    <select id="findPager" resultMap="result-XMobiles">
+        <include refid="pagerHeader"/>
+        <include refid="whereCase"/>
+        <include refid="pagerFoot"/>
+        <include refid="orderBy"/>
+    </select>
+
+    <!-- 查询总数-->
+    <select id="findPagerTotal" resultType="int">
+        SELECT count(MOBILES_NUM) from XMOBILES
+        <include refid="whereCase"/>
+    </select>
+
+
+
+</mapper>
